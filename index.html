@@ -71,11 +71,10 @@ section[id],div[id]{scroll-margin-top:90px}
 .hero .slide.on{opacity:1;animation:kb 7s linear forwards}
 @keyframes kb{from{transform:scale(1)}to{transform:scale(1.12)}}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,60,28,.55),rgba(8,60,28,.72))}
-.hero .content{position:relative;z-index:2;max-width:1040px;padding:0 20px}
-.hero .kicker{display:inline-block;background:var(--orange);color:#fff;font-size:14px;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:8px 18px;border-radius:30px;margin-bottom:26px;opacity:0;animation:up .9s ease .7s forwards;transform:translateY(40px)}
-.hero h1{font-family:var(--serif);font-weight:800;font-size:74px;line-height:89px;opacity:0;transform:translateY(40px);animation:up .9s ease .9s forwards}
+.hero .content{position:relative;z-index:2;max-width:1180px;padding:0 20px}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(64px,6.4vw,96px);line-height:1.12;opacity:0;transform:translateY(40px);animation:up .9s ease .9s forwards}
 .hero h1 span{color:var(--orange-soft)}
-.hero p{font-size:26px;line-height:36px;margin:22px auto 40px;max-width:860px;opacity:0;transform:translateY(40px);animation:up .9s ease 1.15s forwards}
+.hero p{font-size:clamp(24px,2vw,30px);line-height:1.5;margin:28px auto 46px;max-width:900px;opacity:0;transform:translateY(40px);animation:up .9s ease 1.15s forwards}
 .hero .ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;opacity:0;animation:up .9s ease 1.4s forwards;transform:translateY(40px)}
 .hero .ctas .btn{font-size:20px;padding:18px 34px;border-radius:40px}
 .b-fill{background:var(--orange);color:#fff}
@@ -310,7 +309,7 @@ footer .bottom em{color:var(--green-lite);font-style:normal}
   .mobile-menu.on{max-height:640px}
   .mobile-menu a{display:block;color:#1d2b22;font-weight:500;padding:15px 24px;border-top:1px solid #edf2ee}
   .mobile-menu a:hover,.mobile-menu a.active{background:var(--mint-50);color:var(--green)}
-  .hero h1{font-size:52px;line-height:62px}
+  .hero h1{font-size:60px;line-height:1.12}
   .hero p{font-size:21px}
   .cards{grid-template-columns:1fr 1fr}
   .cards .card:last-child:nth-child(odd){grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:0 28px;text-align:left;align-items:center}
@@ -328,9 +327,8 @@ footer .bottom em{color:var(--green-lite);font-style:normal}
 }
 @media (max-width:640px){
   .hero{height:auto;min-height:calc(100svh - 89px);padding:60px 0}
-  .hero h1{font-size:38px;line-height:46px}
-  .hero .kicker{font-size:11px;letter-spacing:2px;padding:7px 14px}
-  .hero p{font-size:17px;line-height:26px}
+  .hero h1{font-size:44px;line-height:1.15}
+    .hero p{font-size:18px;line-height:1.55}
   .hero .ctas .btn{font-size:16px;padding:14px 24px}
   .cards{grid-template-columns:1fr}
   .cards .card:last-child:nth-child(odd){display:flex;text-align:center}
@@ -415,7 +413,6 @@ footer .bottom em{color:var(--green-lite);font-style:normal}
   <div class="slide" style="background-image:url('images/cotef-009.jpg')"></div>
   <div class="slide" style="background-image:url('images/cotef-015.jpg')"></div>
   <div class="content">
-    <div class="kicker">Complete Teenagers Empowerment Foundation</div>
     <h1>Nurturing Teenagers<br>With <span>The Truth!</span></h1>
     <p>A community of teenagers growing to love God, know Him and set to impact their world positively.</p>
     <div class="ctas">
