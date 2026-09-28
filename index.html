@@ -965,7 +965,7 @@ footer .bottom em{color:var(--green-lite);font-style:normal}
   (function(){
     const REPO='Timothy7380/cotef-website', DIR='documents';
     const list=document.getElementById('docList'),search=document.getElementById('docSearch'),filt=document.getElementById('docFilters');
-    const skip=/^(readme\.md|_info\.json|\.gitkeep)$/i;
+    const skip=/^(readme\.md|_?info\.json|\.gitkeep|\.nojekyll)$/i;
     const cat=ext=>({pdf:'PDF',doc:'Word',docx:'Word',xls:'Excel',xlsx:'Excel',csv:'Excel',ppt:'Slides',pptx:'Slides'}[ext]||'Other');
     const pretty=n=>n.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').replace(/\s+/g,' ').trim().replace(/\b\w/g,c=>c.toUpperCase());
     const size=b=>b>1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB';
@@ -987,7 +987,7 @@ footer .bottom em{color:var(--green-lite);font-style:normal}
     const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     Promise.all([
       fetch(`https://api.github.com/repos/${REPO}/contents/${DIR}`).then(r=>r.ok?r.json():[]).catch(()=>[]),
-      fetch(`${DIR}/_info.json`).then(r=>r.ok?r.json():{}).catch(()=>({}))
+      fetch(`${DIR}/info.json`).then(r=>r.ok?r.json():{}).catch(()=>({}))
     ]).then(([files,info])=>{
       docs=(Array.isArray(files)?files:[]).filter(f=>f.type==='file'&&!skip.test(f.name)).map(f=>{
         const ext=(f.name.split('.').pop()||'').toLowerCase(),i=info[f.name]||{};
