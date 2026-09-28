@@ -246,7 +246,12 @@ form input:focus,form textarea:focus,form select:focus{border-color:var(--green)
 form textarea{height:140px;resize:vertical}
 form .btn{width:100%;background:var(--orange);color:#fff;font-weight:600;font-size:16px;height:56px;border-radius:12px;margin-top:4px}
 form .btn:hover{background:var(--green);transform:none}
-form .hint{font-size:13px;color:#888;text-align:center;margin-top:12px}
+form .hint{font-size:13px;color:#667;text-align:center;margin-top:12px}
+.form-status{display:none;margin-top:14px;padding:13px 16px;border-radius:10px;font-size:14.5px;line-height:1.5}
+.form-status.ok{display:block;background:#E7F5EC;color:#0E5A2A;border:1px solid #BfE0C9}
+.form-status.err{display:block;background:#FDECEA;color:#9B2C1F;border:1px solid #F5C6BF}
+form .btn:disabled{opacity:.7;cursor:wait}
+form{position:relative}
 
 /* ===== Book ===== */
 .book{padding:100px 20px 150px;background:#fff}
@@ -789,7 +794,7 @@ footer .bottom em{color:#9FD36A;font-style:normal}
       </div>
       <div class="form-card reveal">
         <h3>Send us a message</h3>
-        <p>Fill in the form and it will open in your email app, addressed to COTEF.</p>
+        <p>Fill in the form and our team will get back to you.</p>
         <form id="contactForm">
           <div class="row">
             <div class="field"><label for="f-first">First name</label><input id="f-first" name="first" placeholder="e.g. Tolu" required></div>
@@ -798,7 +803,9 @@ footer .bottom em{color:#9FD36A;font-style:normal}
           <div class="field"><label for="f-email">Email address</label><input id="f-email" name="email" type="email" placeholder="you@example.com" required></div>
           <div class="field"><label for="f-topic">I’m interested in</label><select id="f-topic" name="topic"><option>General enquiry</option><option>Join COTEF Academy</option><option>Volunteer</option><option>Become a mentor</option><option>Sponsorship / partnership</option><option>Book a school outreach</option><option>Books &amp; journals</option></select></div>
           <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="msg" placeholder="How can we help?"></textarea></div>
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
           <button class="btn" type="submit">Send Message</button>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
           <div class="hint">Prefer WhatsApp? Message us on <a href="https://wa.me/2349034560801" style="color:var(--green);font-weight:600">+234 903 456 0801</a></div>
         </form>
       </div>
@@ -958,10 +965,28 @@ footer .bottom em{color:#9FD36A;font-style:normal}
   document.querySelectorAll('.copy').forEach(b=>b.onclick=()=>{navigator.clipboard?.writeText(b.dataset.copy).then(()=>{b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1800)})});
 
   // Contact form → opens the visitor's email app addressed to COTEF
-  document.getElementById('contactForm').onsubmit=e=>{
-    e.preventDefault();const f=e.target;
-    const body=`Name: ${f.first.value} ${f.last.value}\nEmail: ${f.email.value}\nTopic: ${f.topic.value}\n\n${f.msg.value}`;
-    location.href=`mailto:thecompleteteen@gmail.com?subject=${encodeURIComponent('Website enquiry – '+f.topic.value)}&body=${encodeURIComponent(body)}`;
+  // Contact form → delivered to thecompleteteen@gmail.com via Web3Forms.
+  // Paste the Web3Forms access key between the quotes below. While it is empty,
+  // the form falls back to opening the visitor's email app.
+  const WEB3FORMS_KEY='';
+  const form=document.getElementById('contactForm'),status=document.getElementById('formStatus'),sendBtn=form.querySelector('button[type=submit]');
+  const showStatus=(msg,ok)=>{status.textContent=msg;status.className='form-status '+(ok?'ok':'err')};
+  form.onsubmit=async e=>{
+    e.preventDefault();const f=form;
+    if(f.botcheck.checked)return;
+    const topic=f.topic.value,name=(f.first.value+' '+f.last.value).trim();
+    if(!WEB3FORMS_KEY){
+      const body=`Name: ${name}\nEmail: ${f.email.value}\nTopic: ${topic}\n\n${f.msg.value}`;
+      location.href=`mailto:thecompleteteen@gmail.com?subject=${encodeURIComponent('Website enquiry – '+topic)}&body=${encodeURIComponent(body)}`;return;
+    }
+    sendBtn.disabled=true;const label=sendBtn.textContent;sendBtn.textContent='Sending…';status.className='form-status';
+    try{
+      const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:'COTEF website enquiry – '+topic,from_name:'COTEF Website',name,email:f.email.value,replyto:f.email.value,topic,message:f.msg.value})});
+      const j=await r.json().catch(()=>({}));
+      if(r.ok&&j.success!==false){form.reset();showStatus('Thank you! Your message has been sent. The COTEF team will get back to you soon.',true)}
+      else throw new Error(j.message||'failed');
+    }catch(err){showStatus('Sorry, your message could not be sent. Please try again, or WhatsApp us on +234 903 456 0801.',false)}
+    finally{sendBtn.disabled=false;sendBtn.textContent=label}
   };
 
   // Count-up stats
