@@ -12,7 +12,7 @@ Tip: name files clearly, e.g. `ESOHE-2026-Impact-Report.pdf` — the website tur
 the file name into the title ("Esohe 2026 Impact Report").
 
 ## Optional: nicer titles, dates and descriptions
-Edit `_info.json` in this folder and add an entry per file name, for example:
+Edit `info.json` in this folder and add an entry per file name, for example:
 
 ```json
 {
