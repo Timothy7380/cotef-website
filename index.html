@@ -107,7 +107,7 @@ section[id],div[id]{scroll-margin-top:90px}
 .about .btn{margin-top:36px;background:#000;color:#fff;padding:18px 52px;border-radius:12px;font-size:16px}
 .about .btn:hover{background:var(--green)}
 .about .photo{border-radius:0 0 50px 50px;overflow:hidden;height:600px;position:relative}
-.about .photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.about .photo img{width:100%;height:100%;object-fit:cover;object-position:center center}
 .about .badge{position:absolute;left:20px;bottom:20px;background:var(--orange);color:#fff;border-radius:14px;padding:14px 20px;font-size:14px;line-height:1.4;box-shadow:0 10px 30px rgba(0,0,0,.2)}
 .about .badge b{font-size:26px;display:block}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:70px}
@@ -254,16 +254,21 @@ form .btn:disabled{opacity:.7;cursor:wait}
 form{position:relative}
 
 /* ===== Book ===== */
-.book{padding:100px 20px 150px;background:#fff}
-.book .grid{display:grid;grid-template-columns:420px 1fr;gap:70px;align-items:center;max-width:1100px;margin:0 auto}
-.book .cover{border-radius:18px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.18)}
-.book h2{font-family:var(--serif);font-size:48px;color:#111;line-height:1.15}
-.book .by{color:var(--orange-text);font-weight:600;margin:10px 0 22px}
-.book p{font-size:17px;line-height:1.65;color:#333}
-.book ul{list-style:none;margin:22px 0 30px;display:grid;gap:10px}
-.book li{padding-left:34px;position:relative;font-size:16px}
-.book li::before{content:"✓";position:absolute;left:0;top:-1px;width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:13px}
-.book .btn{background:var(--green);color:#fff;padding:18px 44px;border-radius:10px;font-size:16px}
+.book{padding:100px 0 120px;background:#fff}
+.books{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1100px;margin:0 auto}
+.book-card{display:grid;grid-template-columns:230px 1fr;gap:26px;align-items:start;background:var(--grey-50);border-radius:22px;padding:24px;border:1px solid #ececec;transition:transform .3s,box-shadow .3s}
+.book-card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(0,0,0,.1)}
+.book .cover{border-radius:14px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 18px 36px rgba(0,0,0,.18);background:#fff}
+.book .cover img{width:100%;height:100%;object-fit:cover}
+.book h3{font-family:var(--serif);font-size:26px;color:#111;line-height:1.2}
+.book .sub{font-size:15px;font-style:italic;color:#444;margin-top:6px}
+.book .by{color:var(--orange-text);font-weight:600;font-size:14.5px;margin:10px 0 14px}
+.book p{font-size:15.5px;line-height:1.65;color:#333}
+.book ul{list-style:none;margin:16px 0 4px;display:grid;gap:8px}
+.book li{padding-left:30px;position:relative;font-size:15px}
+.book li::before{content:"✓";position:absolute;left:0;top:0;width:21px;height:21px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:12px}
+.book .btn{margin-top:20px;background:var(--green);color:#fff;padding:14px 26px;border-radius:10px;font-size:15px}
+.book .btn:hover{background:var(--orange)}
 
 /* ===== FAQ ===== */
 .faq{background:var(--grey-50);padding:60px 0 110px}
@@ -327,7 +332,7 @@ footer .bottom em{color:#9FD36A;font-style:normal}
 
 /* ===== Board ===== */
 .board{padding:100px 0;background:var(--grey-50)}
-.board-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.board-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1040px;margin:0 auto}
 .member{background:#fff;border-radius:20px;padding:28px 18px 24px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.05);transition:transform .3s,box-shadow .3s}
 .member:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(10,64,32,.14)}
 .m-img{width:78%;max-width:180px;aspect-ratio:1/1;border-radius:50%;overflow:hidden;margin:0 auto 18px;background:var(--mint-50);border:4px solid #fff;box-shadow:0 0 0 3px var(--green),0 12px 26px rgba(10,64,32,.18)}
@@ -377,7 +382,7 @@ footer .bottom em{color:#9FD36A;font-style:normal}
 /* ===== Responsive ===== */
 @media (max-width:1100px){
   .focus-grid{grid-template-columns:repeat(3,1fr)}
-  .board-grid{grid-template-columns:repeat(3,1fr)}
+  .board-grid{grid-template-columns:repeat(2,1fr);max-width:640px}
   .aims{grid-template-columns:1fr;gap:30px}
   .tiers{grid-template-columns:repeat(3,1fr)}
   .track .slide-card{flex-basis:calc((100% - 48px)/3)}
@@ -400,7 +405,7 @@ footer .bottom em{color:#9FD36A;font-style:normal}
   .cards .card:last-child:nth-child(odd) .img{grid-row:1/5;aspect-ratio:4/3}
   .cards .card:last-child:nth-child(odd) h3{margin-top:0}
   .about .grid,.contact .grid,.faq .grid,.book .grid{grid-template-columns:1fr}
-  .book .cover{max-width:420px;width:100%;margin:0 auto}
+  .books{grid-template-columns:1fr;max-width:720px}
   .stats{grid-template-columns:repeat(2,1fr)}
   .track .slide-card{flex-basis:calc((100% - 24px)/2)}
   .masonry{column-count:3}
@@ -449,13 +454,15 @@ footer .bottom em{color:#9FD36A;font-style:normal}
   .mentor{padding:64px 20px}
   .sponsor-btn{padding:0 14px}
   .logo img{height:54px}
-  .book h2{font-size:36px}
+  .book-card{grid-template-columns:1fr;padding:18px}
+  .book .cover{max-width:280px;width:100%;margin:0 auto}
+  .book h3{font-size:24px}
+  .book .btn{width:100%}
   .faq h2{font-size:40px}
   .sec-head h2{font-size:34px}
   .focus,.board,.resources{padding:70px 0}
   .focus-grid{grid-template-columns:1fr 1fr;gap:12px}
   .focus-grid .f-card:last-child{grid-column:1/-1}
-  .board-grid .member:first-child{grid-column:1/-1;max-width:260px;justify-self:center;width:100%}
   .f-card{padding:22px 14px}
   .board-grid{grid-template-columns:1fr 1fr;gap:12px}
   .member h3{font-size:14px}
@@ -562,9 +569,9 @@ footer .bottom em{color:#9FD36A;font-style:normal}
         <a href="https://forms.gle/Rn1cPCufrsefZEGj6" target="_blank" rel="noopener" class="btn">Register</a>
       </div>
       <div class="card reveal" style="transition-delay:0.24s">
-        <div class="img"><img src="images/cotef-060.jpg" alt="My Chaperone book" loading="lazy"></div>
+        <div class="img"><img src="images/book-my-chaperone.jpg" alt="My Chaperone book" loading="lazy"></div>
         <h3>Books &amp; Journals</h3>
-        <p><em>My Chaperone – Every Teen’s Guide</em> and other resources that help teenagers discover their identity, build confidence and handle peer pressure.</p>
+        <p><em>My Chaperone – Every Teen’s Guide</em>, <em>Becoming Unstoppable</em> and other resources that help teenagers grow in identity, confidence and resilience.</p>
         <a href="#book" class="btn">Learn More</a>
       </div>
     </div>
@@ -587,7 +594,7 @@ footer .bottom em{color:#9FD36A;font-style:normal}
         <div class="about-btns reveal"><a href="#programmes" class="btn">Our Programmes</a><a href="#board" class="btn ghost">Meet Our Board</a></div>
       </div>
       <div class="photo reveal">
-        <img src="images/cotef-011.jpg" alt="COTEF speaker addressing teenagers at ESOHE">
+        <img src="images/photo-02.jpg" alt="COTEF volunteers and children at ESOHE">
         <div class="badge"><b>Est. 2021</b>Founded May 12, 2021</div>
       </div>
     </div>
@@ -639,13 +646,12 @@ footer .bottom em{color:#9FD36A;font-style:normal}
     <div class="sec-head reveal">
       <div class="eyebrow">Leadership</div>
       <h2>Our Board of Directors</h2>
-      <p>Guided by a passionate team of five directors committed to the empowerment of the next generation.</p>
+      <p>Guided by a passionate team of directors committed to the empowerment of the next generation.</p>
     </div>
     <div class="board-grid">
       <div class="member reveal"><div class="m-img"><img src="images/board-emmanuella.jpg" alt="Emmanuella Isimeme Uduebholo" loading="lazy"></div><h3>Emmanuella Isimeme Uduebholo</h3><span>Chairman / Founder</span></div>
       <div class="member reveal"><div class="m-img"><img src="images/board-collins.jpg" alt="Collins Emeka Matthew" loading="lazy"></div><h3>Collins Emeka Matthew</h3><span>Director</span></div>
       <div class="member reveal"><div class="m-img"><img src="images/board-tovia.jpg" alt="Tovia Ebosetale Uduebholo" loading="lazy"></div><h3>Tovia Ebosetale Uduebholo</h3><span>Secretary</span></div>
-      <div class="member reveal"><div class="m-img"><img src="images/board-oghenero.jpg" alt="Oghenero Okikie" loading="lazy"></div><h3>Oghenero Okikie</h3><span>Programmes Director</span></div>
       <div class="member reveal"><div class="m-img"><img src="images/board-richman.jpg" alt="Richman Ayedun" loading="lazy"></div><h3>Richman Ayedun</h3><span>Member</span></div>
     </div>
   </div>
@@ -721,10 +727,11 @@ footer .bottom em{color:#9FD36A;font-style:normal}
       <li>Zenith Bank <small>Premium Sponsor · ESOHE 2026</small></li>
       <li>TEU Consulting Services <small>Bronze Sponsor · ESOHE 2026</small></li>
       <li>Elevation Church Ikorodu (Area 6)</li>
-      <li>Virtually Safe</li>
-      <li>The Safe Place Charity</li>
       <li>Soule Haven</li>
-      <li>Eunifrance Schools</li>
+      <li>Craftline Enterprise</li>
+      <li>Marren School</li>
+      <li>Oduloye CDA</li>
+      <li>MainTek IT</li>
       <li>Sunlight CDA, Igbogbo</li>
     </ul>
   </div>
@@ -777,7 +784,7 @@ footer .bottom em{color:#9FD36A;font-style:normal}
         <a class="item" href="tel:+2349034560801"><span class="ic"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg></span><span><small>Call / WhatsApp</small><b>+234 903 456 0801</b></span></a>
         <a class="item" href="tel:+2349036403606"><span class="ic"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg></span><span><small>Phone</small><b>+234 903 640 3606</b></span></a>
         <a class="item" href="mailto:thecompleteteen@gmail.com"><span class="ic"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg></span><span><small>Email</small><b>thecompleteteen@gmail.com</b></span></a>
-        <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></span><span><small>Location</small><b>Ikorodu, Lagos, Nigeria</b></span></div>
+        <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></span><span><small>Location</small><b>Lagos, Nigeria</b></span></div>
         <h4>Quick links</h4>
         <div class="quick">
           <a href="https://forms.gle/dmKEGCtQFrwJTAiTA" target="_blank" rel="noopener">Join COTEF Academy <span>↗</span></a>
@@ -815,20 +822,38 @@ footer .bottom em{color:#9FD36A;font-style:normal}
 
 <!-- ===== Book ===== -->
 <section class="book" id="book">
-  <div class="grid">
-    <div class="cover reveal"><img src="images/cotef-060.jpg" alt="My Chaperone – Every Teen’s Guide book"></div>
-    <div>
-      <div class="eyebrow reveal">Books &amp; Journals</div>
-      <h2 class="reveal">My Chaperone – Every Teen’s Guide</h2>
-      <div class="by reveal">By Emmanuella Isimeme Uduebholo, Founder &amp; Chairman, COTEF</div>
-      <p class="reveal">A warm, relatable guide written to help teenagers navigate adolescence and make healthy decisions for their life’s progress. Every student at ESOHE receives a copy alongside their learning materials, and schools can order in bulk at a discount.</p>
-      <ul class="reveal">
-        <li>Discover their true identity</li>
-        <li>Rebuild confidence from within</li>
-        <li>Learn how to handle peer pressure</li>
-        <li>Find clarity on who they’re becoming</li>
-      </ul>
-      <a href="https://linktr.ee/hey_honey_books" target="_blank" rel="noopener" class="btn reveal">Shop Books &amp; Journals</a>
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Books &amp; Journals</div>
+      <h2>Books From Our Team</h2>
+      <p>Practical, faith-filled reads written to help teenagers and young people grow with confidence and purpose.</p>
+    </div>
+    <div class="books">
+      <article class="book-card reveal">
+        <div class="cover"><img src="images/book-my-chaperone.jpg" alt="My Chaperone – Every Teen’s Guide book cover" loading="lazy"></div>
+        <div class="b-body">
+          <h3>My Chaperone – Every Teen’s Guide</h3>
+          <div class="by">By Emmanuella Isimeme Uduebholo</div>
+          <p>A warm, relatable guide that helps teenagers navigate adolescence and make healthy decisions. Every student at ESOHE receives a copy, and schools can order in bulk at a discount.</p>
+          <ul>
+            <li>Discover their true identity</li>
+            <li>Rebuild confidence from within</li>
+            <li>Handle peer pressure</li>
+            <li>Find clarity on who they’re becoming</li>
+          </ul>
+          <a href="https://linktr.ee/hey_honey_books" target="_blank" rel="noopener" class="btn">Get My Chaperone</a>
+        </div>
+      </article>
+      <article class="book-card reveal" style="transition-delay:.12s">
+        <div class="cover"><img src="images/book-becoming-unstoppable.jpg" alt="Becoming Unstoppable book cover" loading="lazy"></div>
+        <div class="b-body">
+          <h3>Becoming Unstoppable</h3>
+          <div class="sub">My Journey from Struggle to Strength</div>
+          <div class="by">By Oghenero Okikie</div>
+          <p>A personal story of resilience that encourages readers to keep going through hard seasons and turn their struggles into strength.</p>
+          <a href="https://wa.me/2349034560801?text=Hello%2C%20I%20would%20like%20to%20get%20a%20copy%20of%20Becoming%20Unstoppable" target="_blank" rel="noopener" class="btn">Get Becoming Unstoppable</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -839,12 +864,12 @@ footer .bottom em{color:#9FD36A;font-style:normal}
     <div>
       <h2 class="reveal">FAQs</h2>
       <div class="sub">Frequent Questions</div>
-      <div class="acc open"><button>What is COTEF? <i></i></button><div class="ans"><div><p>Complete Teenagers Empowerment Foundation (COTEF) is a registered Non-Governmental Organisation based in Ikorodu, Lagos. We nurture teenagers with the Truth and help them grow to love God, know Him and impact their world positively.</p><p>We were formerly known as The Complete Teen and rebranded as COTEF in 2025.</p></div></div></div>
+      <div class="acc open"><button>What is COTEF? <i></i></button><div class="ans"><div><p>Complete Teenagers Empowerment Foundation (COTEF) is a registered Non-Governmental Organisation based in Lagos, Nigeria. We nurture teenagers with the Truth and help them grow to love God, know Him and impact their world positively.</p><p>We were formerly known as The Complete Teen and rebranded as COTEF in 2025.</p></div></div></div>
       <div class="acc"><button>What happens in COTEF Academy? <i></i></button><div class="ans"><div><p>The Academy runs a monthly series of mentorship sessions (past series include <em>Choices</em>, <em>What’s Trending</em>, <em>Gifts</em> and <em>Love Matters</em>) covering spirituality, finances, career, academics, character, relationships and mental wellbeing. It also includes book reviews, affirmations and a supportive community of teens and mentors.</p></div></div></div>
       <div class="acc"><button>What is ESOHE? <i></i></button><div class="ans"><div><p>ESOHE is COTEF’s Educational Support Outreach. We give secondary school students free learning packs and self-help books, hold inspiring talks and breakout sessions, and offer parents health checks and counselling. The 2025 edition reached 200+ students in Baiyeku; ESOHE 2026 (“Identity”) targeted 300+ students in Igbogbo, Ikorodu.</p></div></div></div>
       <div class="acc"><button>How can I get involved with COTEF? <i></i></button><div class="ans"><div><p>Enrol a teenager in COTEF Academy, volunteer at an outreach, become a teen mentor, sponsor a child’s school pack, or partner with us as an organisation. Send a DM on Instagram, WhatsApp +234 903 456 0801 or email thecompleteteen@gmail.com.</p></div></div></div>
       <div class="acc"><button>How do I donate or sponsor a child? <i></i></button><div class="ans"><div><p>Transfer to <b>Complete Teenagers Empowerment Foundation</b>, <b>ProvidusUnity Bank</b>, account number <b>1308421205</b>. One school pack costs ₦12,000. Please share your receipt with +234 903 456 0801.</p></div></div></div>
-      <div class="acc"><button>Who leads COTEF? <i></i></button><div class="ans"><div><p>COTEF is guided by a five-member Board of Directors: Emmanuella Isimeme Uduebholo (Chairman / Founder), Collins Emeka Matthew (Director), Tovia Ebosetale Uduebholo (Secretary), Oghenero Okikie (Programmes Director) and Richman Ayedun (Member).</p></div></div></div>
+      <div class="acc"><button>Who leads COTEF? <i></i></button><div class="ans"><div><p>COTEF is guided by its Board of Directors: Emmanuella Isimeme Uduebholo (Chairman / Founder), Collins Emeka Matthew (Director), Tovia Ebosetale Uduebholo (Secretary) and Richman Ayedun (Member).</p></div></div></div>
       <div class="acc"><button>Can COTEF visit my school? <i></i></button><div class="ans"><div><p>Yes. Our team has held outreaches at Oreyo Grammar School, Ipakodo High School, Mawutoi School, Zumratu School, The Child School and Excellent West College, among others. Get in touch to book a session for your students.</p></div></div></div>
     </div>
     <div class="side reveal"><img src="images/cotef-006.jpg" alt="COTEF team at ESOHE 2026"></div>
