@@ -62,6 +62,11 @@ section[id],div[id]{scroll-margin-top:90px}
 .dd .menu a:hover{background:var(--mint-50);color:var(--green)}
 .sponsor-btn{background:var(--green);color:#fff;font-weight:600;font-size:15px;height:48px;padding:0 34px;border-radius:10px;box-shadow:0 8px 20px rgba(23,129,62,.25)}
 .sponsor-btn:hover{background:var(--orange);box-shadow:0 8px 20px rgba(243,112,33,.3)}
+.hdr-btns{display:flex;gap:10px;align-items:center}
+.nav>a,.nav .dd>span{white-space:nowrap}
+@media (max-width:1240px) and (min-width:1025px){.header .inner{gap:18px}.nav{gap:2px}.nav>a,.nav .dd>span{padding:0 10px;font-size:14px}.partner-btn{padding:0 16px;font-size:14px}.sponsor-btn{padding:0 20px;font-size:14px}}
+.partner-btn{background:#fff;color:var(--green);border:2px solid var(--green);font-weight:600;font-size:15px;height:48px;padding:0 28px;border-radius:10px}
+.partner-btn:hover{background:var(--green);color:#fff}
 .burger{display:none;background:none;border:0;width:40px;height:40px;cursor:pointer;border-radius:8px}
 .burger span{display:block;height:2px;background:var(--green);margin:7px 8px;transition:.3s}
 .mobile-menu{display:none}
@@ -431,7 +436,8 @@ footer .bottom em{color:#9FD36A;font-style:normal}
 @media (max-width:1024px){
   .header .inner{grid-template-columns:auto 1fr auto auto;gap:14px}
   .nav{display:none}
-  .sponsor-btn{grid-column:3;height:42px;padding:0 20px;font-size:14px}
+  .hdr-btns{grid-column:3;gap:8px}
+  .sponsor-btn,.partner-btn{height:42px;padding:0 18px;font-size:14px}
   .burger{display:block;grid-column:4}
   .logo img{height:60px}
   .mobile-menu{display:block;position:fixed;top:89px;left:0;right:0;background:#fff;max-height:0;overflow:hidden;transition:max-height .4s ease;z-index:99;box-shadow:0 18px 30px rgba(10,64,32,.12)}
@@ -494,7 +500,8 @@ footer .bottom em{color:#9FD36A;font-style:normal}
   .info,.form-card{padding:24px;border-radius:18px}
   .courses .panel{padding:48px 18px}
   .mentor{padding:64px 20px}
-  .sponsor-btn{padding:0 14px}
+  .sponsor-btn,.partner-btn{padding:0 12px;font-size:13px;height:40px}
+  .hdr-btns{gap:6px}
   .logo img{height:54px}
   .book-card{grid-template-columns:1fr;padding:18px}
   .book .cover{max-width:280px;width:100%;margin:0 auto}
@@ -564,7 +571,7 @@ footer .bottom em{color:#9FD36A;font-style:normal}
         </div>
       </div>
     </nav>
-    <a href="#sponsor" class="btn sponsor-btn">Donate</a>
+    <div class="hdr-btns"><a href="#partner" class="btn partner-btn">Partner</a><a href="#sponsor" class="btn sponsor-btn">Donate</a></div>
     <button class="burger" aria-label="Menu" id="burger"><span></span><span></span><span></span></button>
   </div>
 </header>
